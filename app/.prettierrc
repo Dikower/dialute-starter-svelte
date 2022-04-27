@@ -1,0 +1,13 @@
+{
+  "tabWidth": 2,
+  "semi": true,
+  "singleQuote": true,
+  "bracketSpacing": true,
+  "arrowParens": "avoid",
+
+  "plugins": ["prettier-plugin-svelte"],
+  "svelteSortOrder": "styles-scripts-markup",
+  "svelteStrictMode": true,
+  "svelteBracketNewLine": true,
+  "svelteAllowShorthand": true
+}
