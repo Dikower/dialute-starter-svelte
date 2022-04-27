@@ -1,4 +1,4 @@
-# 🧶📦  Dialute Template
+# 🧶📦🧡  Dialute Template
 The way you will want to initialize Chat and Canvas Apps for SberSalute. 
 Controll the power of __generator based scripts__ of _[Dialute](https://github.com/Dikower/Dialute)_ and __reactivity__ of _[Svelte](https://svelte.dev/)_ frameworks
 
