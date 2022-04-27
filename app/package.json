@@ -5,11 +5,11 @@
   "private": true,
   "scripts": {
     "build": "rollup -c && node index.js",
-    "dev": "concurrently --kill-others \"npm run dev-app\" \"npm run dev-hook\"",
-    "dev-app": "rollup -c -w",
-    "dev-hook": "nodemon index.js",
+    "dev": "rollup -c -w",
     "start": "sirv public --no-clear",
-    "check": "svelte-check --tsconfig ./tsconfig.json"
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "lint": "eslint .",
+    "format": "prettier --write ./src/**/*.{js,svelte,json,html,ts}"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.1.0",
@@ -17,6 +17,8 @@
     "@rollup/plugin-replace": "^2.4.2",
     "@rollup/plugin-typescript": "^8.3.2",
     "@tsconfig/svelte": "^2.0.1",
+    "prettier": "^2.6.2",
+    "prettier-plugin-svelte": "^2.7.0",
     "rollup": "^2.70.2",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-livereload": "^2.0.5",

@@ -6,8 +6,7 @@
   "arrowParens": "avoid",
 
   "plugins": ["prettier-plugin-svelte"],
-  "svelteSortOrder": "styles-scripts-markup",
-  "svelteStrictMode": true,
-  "svelteBracketNewLine": true,
+  "svelteSortOrder": "options-scripts-markup-styles",
+  "svelteStrictMode": false,
   "svelteAllowShorthand": true
 }

@@ -1,19 +1,19 @@
-import {darkEva, darkJoy, darkSber} from '@sberdevices/plasma-tokens';
+import { darkEva, darkJoy, darkSber } from '@sberdevices/plasma-tokens';
 import css from 'json-to-css';
 
-export const themes = {eva: darkEva, joy: darkJoy, sber: darkSber}
+export const themes = { eva: darkEva, joy: darkJoy, sber: darkSber };
 
 export function getTheme(character) {
-  return css.of(themes[character])
+  return css.of(themes[character]);
 }
 
-const sheetIndex = 1
+const sheetIndex = 1;
 
 export function setTheme(character) {
   let sheet = document.styleSheets[sheetIndex];
 
-  if (sheet.cssRules[0].selectorText === ":root") {
+  if (sheet.cssRules[0].selectorText === ':root') {
     sheet.deleteRule(0);
   }
-  sheet.insertRule(getTheme(character), 0)
+  sheet.insertRule(getTheme(character), 0);
 }
