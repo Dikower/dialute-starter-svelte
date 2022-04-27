@@ -4,7 +4,7 @@ Controll the power of __generator based scripts__ of _[Dialute](https://github.c
 
 ## ⚙️ Install
 ```bash
-$: npx degit dikower/dialute-starter
+$: npx degit dikower/dialute-starter-svelte
 ```
 
 ## 🚀 Startup
