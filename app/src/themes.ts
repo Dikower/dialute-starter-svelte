@@ -12,6 +12,7 @@ const sheetIndex = 1;
 export function setTheme(character) {
   let sheet = document.styleSheets[sheetIndex];
 
+  // @ts-ignore
   if (sheet.cssRules[0].selectorText === ':root') {
     sheet.deleteRule(0);
   }
