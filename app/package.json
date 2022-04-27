@@ -1,6 +1,7 @@
 {
-  "name": "svelte-app",
-  "version": "1.0.0",
+  "name": "dialute-app",
+  "description": "Dialute Starter Svelte - App part",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "build": "rollup -c && node index.js",

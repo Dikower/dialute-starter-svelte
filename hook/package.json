@@ -1,5 +1,6 @@
 {
-  "name": "Dialute Starter Svelte - Hook part",
+  "name": "dialute-hook",
+  "description": "Dialute Starter Svelte - Hook part",
   "version": "0.0.1",
   "private": true,
   "scripts": {
