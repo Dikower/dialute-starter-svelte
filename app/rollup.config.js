@@ -48,7 +48,8 @@ export default {
 			}
 		}),
 		replace({
-			'process.env.NODE_ENV': JSON.stringify( 'production' )
+			'process.env.NODE_ENV': JSON.stringify( 'production' ),
+			preventAssignment: true,
 		}),
 		// we'll extract any component CSS out into
 		// a separate file - better for performance

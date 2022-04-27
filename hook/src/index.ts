@@ -8,4 +8,5 @@ function* script(r: SberRequest) {
 
 Dialute
   .fromEntrypoint(script as GeneratorFunction)
+  .shareApp('../app/public')
   .start();
