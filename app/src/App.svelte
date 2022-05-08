@@ -60,7 +60,13 @@
   });
 
   function handleClick() {
-    assistant.sendData({action: {action_id: 'click'}})
+    assistant.sendData({
+      action: {
+        action_id: 'click',
+        // You can send any data to your hook
+        data: {}
+      }
+    })
   }
 </script>
 
