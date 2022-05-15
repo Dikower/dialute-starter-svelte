@@ -1,6 +1,9 @@
-import { Dialute, SberRequest } from 'dialute';
+// to run this version change package.json : dev
+// "nodemon --exec npx ts-node src/index.ts" to "nodemon src/index.js"
 
-function* script(r: SberRequest) {
+import { Dialute } from 'dialute';
+
+function* script(r) {
   const rsp = r.buildRsp();
   const state = {count: 0}
 
