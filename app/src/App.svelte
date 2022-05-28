@@ -1,6 +1,6 @@
 <script lang="ts">
   import {onMount} from 'svelte';
-  import {createSmartappDebugger} from '@sberdevices/assistant-client';
+  import {createSmartappDebugger, createAssistant} from '@sberdevices/assistant-client';
   import {setTheme} from './themes';
   import {logger} from "./utils";
   // clear spam from sber client
@@ -9,7 +9,7 @@
   let state = {count: 0};
 
   // Set token for assistant-client from https://developers.sber.ru/studio/settings/emulator
-  let token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzNjk4NTAzMzgzMjViZmViZjg2ZGVjYjAzZDkzZjkwZDQ2ZmMxNmNmZGZiNTUyMDAzNGQxOTFkMWEwYTQ4NDQyNTM5YmU5MjcwMDQyNjI5OCIsImF1ZCI6IlZQUyIsImV4cCI6MTY1Mjk2MTUwOSwiaWF0IjoxNjUyODc1MDk5LCJpc3MiOiJLRVlNQVNURVIiLCJ0eXBlIjoiQmVhcmVyIiwianRpIjoiYWRlMWRhMTgtMmUxYy00YTJkLTljODgtZDBiZDgxNWI2ZTljIiwic2lkIjoiOTM2ZDFjMmYtMDRjZS00NGVkLWE4YzUtMTliMjZkZTczZDBmIn0.ci8qpt_O4dFyVbe2fbmgfXahtRxNXAApYQUZ9LkvHsfp_MuZHZCvMkEl3W_0fF4NT07GhHKtqea3uONCD_KCE7WA3D-4UjbJ1qtrJ-5607yDZgS3wuLz7x2x8xqv7nMXfgRud9V-9O08Nfi3IXfdhiHcndEJjsuWMO-knvw9fDZ-8OhaHjXBvlsoF3yDgKT4ttMTbqVdCOlRmrxVDUQ5kLpl26PUXBI8zKsRG9pFPY9ZXYbjQgeJBy1aYCboURfzXOtgmEDdhRG9N1Is4Nn4IB8WxlC9Hy4WCWdg4EW-xPDiIMX7x7t6uUOcEJon8baHtOM5ZJhN4h9n-J3_S5vl18_x5CAbwnv-REs8ifAl3A9vXkXveN95v5H9Pf5ZtNr4g2iPEBlQzo5b4A_Wqht8KZwVpv322smB6zLkfuN61hOt-QUz7eYQDPPLY9eAYEi02r7dCtPILe-ys4K92r635uhMQnvIwf0-2JDrFdJOjS6gya6vOzBmLNuCXWKgH14hRHa8hLuQM38FWhCStEgerpf7Q-uLGz_gvf4KoKKTzjydXVIrjY-zzATKxJ1CMp1mC8SdJsQrO55Hll1aXKr4omv80Uz9vngB2krjEc62g0kHLy27RSGSz6TeHmyYHqoa2oDufB8VmMOIK2fGouJ8a2WcsMfzTHMyviFgdK3BmhM';
+  let token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzNjk4NTAzMzgzMjViZmViZjg2ZGVjYjAzZDkzZjkwZDQ2ZmMxNmNmZGZiNTUyMDAzNGQxOTFkMWEwYTQ4NDQyNTM5YmU5MjcwMDQyNjI5OCIsImF1ZCI6IlZQUyIsImV4cCI6MTY1Mzg1MDc0OSwiaWF0IjoxNjUzNzY0MzM5LCJpc3MiOiJLRVlNQVNURVIiLCJ0eXBlIjoiQmVhcmVyIiwianRpIjoiNTk0NWQ1ZWEtZDU5OS00NmI3LWIzZWItNWQxMmQzNmE3MjQ4Iiwic2lkIjoiZjg2M2RlNDItZWQxNi00NmQ5LTk5MmItYWQ4NjU0MTI0MmJlIn0.OxOsum-_8Z39VjXYttQFddko4j6nc_vEF3YGJeR4CJSRVFpeUFRWFsTH3TInySolmT4nClL03_sUEid0faSJHMiazNFPkOTBVN6M9bJ00u1CyHQOjatI_aoMwOIAPylDhyAU2KN5qAI8nVLVchdZZjJj-fDu4scWwzkKTNaGCRxa8FnParXneghJs0QhV7h74jm99EjY0_bMJfHRhPSBBaSq3OyDq-8r0ZBwOd17Xx00_XTirC2pkQ6LAuKa6WH3NBkCvLbGY2hVOKycMBe_lnGZgIaCEqIfMgjC6A3E8zZ7p8Pb0M6jrqoZgDhTJwrXYiubeWGXpKbSy-YFVPyDxmawmWU2I12820drk3-3MOkkCtYMJ4hgehVpWV_i4pl0Fz_8iu8gNzaL5eJcRzQNkVklO-edUsP-oBH9Uc3BNsLPd63_fEsi4jlnSF-pLymCttdigDI6Z8yMysZLnUYNorKoBXHRxk_DPsXmwCwp8to38BPemZtdiX9X9Ttu3jf8G85mY2u1f3SRh-z6NYsTWeG44ldCresz8z94UwfU1AXSEKP7wz-E4N_QRxVLy5eTgJJCE_VUcMcpY9XCk5-vh92PWFK8iIol96A34ARgMTTeQrx_eeHQpMKpGZXPXif1PypHatk5nzAjpg3JbaJ419yzbDDpywggCKwQuBf1SH0';
 
   // Set the name of your SmartApp for activation
   let initPhrase = 'запусти темлейт';
@@ -18,21 +18,22 @@
   let character = 'eva'; // default, before sber client gets state
   $: setTheme(character);
   // Now you can CSS custom properties from https://plasma.sberdevices.ru/current/?path=/docs/colors--default
-
   onMount(() => {
     function getState() {
       return {}
     }
 
-    const init = () => {
+    const init = (): any => {
       // Use it for debugging in browser
+      if (process.env.NODE_ENV === 'production') {
+        return createAssistant({getState});
+      }
       return createSmartappDebugger({
         token,
         initPhrase,
         getState,
       });
       // TODO: Use to run it in production mode inside Salute App
-      // return createAssistant({getState});
     };
     assistant = init();
 
